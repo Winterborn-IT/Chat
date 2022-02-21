@@ -1,0 +1,23 @@
+.root {
+    -fx-background-radius: 6;
+    -fx-background-color: rgb(45, 45, 50), rgb(60, 60, 65);
+    -fx-background-insets: 0, 0 1 1 0;
+    -fx-font-size: 14;
+}
+
+#btn {
+    -fx-background-color: rgb(61, 250, 213);
+}
+
+#btn:hover {
+    -fx-background-color: rgb(31, 246, 144);
+}
+
+#textField {
+    -fx-background-color: rgb(61, 250, 213);
+    -fx-border-color: rgb(31, 246, 144);
+}
+
+#textArea {
+    -fx-background-color: rgb(61, 250, 213);
+}
