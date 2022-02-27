@@ -29,7 +29,7 @@ public class ClientHandler {
 
             new Thread(() -> {
                 try {
-                    socket.setSoTimeout(5000);
+                    socket.setSoTimeout(120000);
                     //цикл аутентификации
                     while (true) {
                         String str = in.readUTF();
@@ -54,7 +54,7 @@ public class ClientHandler {
                                         sendMsg("/auth_ok " + nickname);
                                         authenticated = true;
                                         server.subscribe(this);
-                                        socket.setSoTimeout(0);
+                                        socket.setSoTimeout(0); // Аутентификация прошла успешно
                                         break;
                                     } else {
                                         sendMsg("Учетная запись уже используется");
@@ -99,7 +99,7 @@ public class ClientHandler {
                         }
                     }
                 } catch (SocketTimeoutException e) {
-                    sendMsg("/end");
+                    sendMsg(Command.END);
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {
