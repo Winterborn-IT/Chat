@@ -4,35 +4,30 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="AnchorPane" prefHeight="320.0" prefWidth="500.0" stylesheets="@style.css"
-            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="level2.lesson4.Controller">
+<AnchorPane fx:id="AnchorPane" prefHeight="320.0" prefWidth="500.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="level2.lesson4.Controller">
 
-    <HBox fx:id="authPanel" spacing="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
-          AnchorPane.topAnchor="10.0">
-        <TextField fx:id="loginField" promptText="Логин" HBox.hgrow="ALWAYS"/>
-        <PasswordField fx:id="passwordField" promptText="Пароль" HBox.hgrow="ALWAYS"/>
-        <Button onAction="#tryToAuth" text="Аутентификация"/>
+    <HBox fx:id="authPanel" spacing="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <TextField fx:id="loginField" prefHeight="30.0" prefWidth="105.0" promptText="Логин" HBox.hgrow="ALWAYS" />
+        <PasswordField fx:id="passwordField" prefHeight="30.0" prefWidth="106.0" promptText="Пароль" HBox.hgrow="ALWAYS" />
+        <Button onAction="#tryToAuth" text="Аутентификация" />
+        <Button onAction="#tryToReg" text="Регистрация" />
     </HBox>
 
-    <HBox fx:id="msgPanel" alignment="BOTTOM_CENTER" managed="false" visible="false" AnchorPane.bottomAnchor="20.0"
-          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <TextField fx:id="textField" onAction="#sendMsg" prefWidth="380.0" promptText="Введите ваше сообщение"
-                   HBox.hgrow="ALWAYS">
+    <HBox fx:id="msgPanel" alignment="BOTTOM_CENTER" managed="false" visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <TextField fx:id="textField" onAction="#sendMsg" prefWidth="380.0" promptText="Введите ваше сообщение" HBox.hgrow="ALWAYS">
             <HBox.margin>
-                <Insets left="10.0"/>
+                <Insets left="10.0" />
             </HBox.margin>
         </TextField>
-        <Button fx:id="btn" mnemonicParsing="false" onAction="#sendMsg" prefWidth="100.0" text="Отправить"
-                HBox.hgrow="ALWAYS">
+        <Button fx:id="btn" mnemonicParsing="false" onAction="#sendMsg" prefWidth="100.0" text="Отправить" HBox.hgrow="ALWAYS">
             <HBox.margin>
-                <Insets left="10.0" right="10.0"/>
+                <Insets left="10.0" right="10.0" />
             </HBox.margin>
         </Button>
     </HBox>
 
-    <TextArea fx:id="textArea" editable="false" prefWidth="550.0" AnchorPane.bottomAnchor="60.0"
-              AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0"/>
+    <TextArea fx:id="textArea" editable="false" prefWidth="550.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0" />
+    <ListView fx:id="clientList" layoutX="349.0" layoutY="45.0" managed="false" onMouseReleased="#clientlistMouseAction" prefHeight="215.0" prefWidth="141.0" visible="false" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0" />
 
 
 </AnchorPane>
