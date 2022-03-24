@@ -21,3 +21,7 @@
 #textArea {
     -fx-background-color: rgb(61, 250, 213);
 }
+
+#clientList {
+    -fx-background-color: rgb(229, 229, 229);
+}

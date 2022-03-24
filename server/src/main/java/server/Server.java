@@ -48,27 +48,58 @@ public class Server {
 
     public void broadcastMsg(ClientHandler sender, String msg) {
         String message = String.format("[ %s ]: %s", sender.getNickname(), msg);
-        String[] personalNick = msg.split(" ", 3);
-
         for (ClientHandler client : clients) {
-            if (msg.startsWith("/w")) {
-                if (client.getNickname().equals(personalNick[1])) {
-                    String personalMsg = String.format("[ %s ]: %s", sender.getNickname(), personalNick[2]);
-                    client.sendMsg(personalMsg);
-                    sender.sendMsg(personalMsg);
-                }
-            } else {
-                client.sendMsg(message);
-            }
+            client.sendMsg(message);
         }
     }
 
+    public void broadcastClientList() {
+        StringBuilder stringBuilder = new StringBuilder("/clientlist");
+
+        for (ClientHandler client : clients) {
+            stringBuilder.append(" ").append(client.getNickname());
+        }
+
+        String msg = stringBuilder.toString();
+
+        for (ClientHandler client : clients) {
+            client.sendMsg(msg);
+        }
+    }
+
+    public void privateMsg(ClientHandler sender, String receiver, String msg) {
+        String message = String.format("[ %s ]: %s", sender.getNickname(), msg);
+
+        for (ClientHandler client : clients) {
+            if (client.getNickname().equals(receiver)) {
+                client.sendMsg(message);
+                if (!sender.getNickname().equals(receiver)) {
+                    sender.sendMsg(message);
+                }
+                return;
+            }
+        }
+        sender.sendMsg("Не найден пользователь" + receiver);
+    }
+
+    public boolean isLoginAuthenticated(String login) {
+        for (ClientHandler client : clients) {
+            if (client.getLogin().equals(login)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public void subscribe(ClientHandler clientHandler) {
         clients.add(clientHandler);
+        broadcastClientList();
     }
 
     public void unsubscribe(ClientHandler clientHandler) {
         clients.remove(clientHandler);
+        broadcastClientList();
     }
 
     public AuthService getAuthService() {

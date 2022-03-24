@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="AnchorPane" prefHeight="320.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/16"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="level2.lesson4.RegController">
+
+    <Label text="Логин">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="loginField" promptText="Логин" HBox.hgrow="ALWAYS">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </TextField>
+
+    <Label text="Пароль">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <PasswordField fx:id="passwordField" promptText="Пароль" HBox.hgrow="ALWAYS">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </PasswordField>
+
+    <Label text="Никнейм">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="nicknameField" promptText="Никнейм" HBox.hgrow="ALWAYS">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </TextField>
+
+    <TextArea fx:id="textArea" editable="false" VBox.vgrow="ALWAYS"/>
+
+    <Button onAction="#tryToReg" text="Регистрация">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+
+
+</VBox>
