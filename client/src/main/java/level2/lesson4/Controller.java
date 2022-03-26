@@ -52,6 +52,8 @@ public class Controller implements Initializable {
     private Stage regStage;
     private RegController regController;
 
+    private String login;
+
 
     public void setAuthenticated(boolean authenticated) {
         this.authenticated = authenticated;
@@ -109,6 +111,7 @@ public class Controller implements Initializable {
                             if (str.startsWith("/auth_ok")) {
                                 nickname = str.split(" ")[1];
                                 setAuthenticated(true);
+                                textArea.appendText(FileHandler.showHistoryMsg(this.login));
                                 break;
                             }
                             if (str.equals("/reg_ok") || str.equals("/reg_no")) {
@@ -116,6 +119,7 @@ public class Controller implements Initializable {
                             }
                         } else {
                             textArea.appendText(str + "\n");
+                            FileHandler.writeToFile(str, this.login);
                         }
                     }
                     //цикл работы
@@ -137,6 +141,7 @@ public class Controller implements Initializable {
                             }
                         } else {
                             textArea.appendText(str + "\n");
+                            FileHandler.writeToFile(str, this.login);
                         }
                     }
                 } catch (IOException e) {
@@ -177,6 +182,8 @@ public class Controller implements Initializable {
         String msg = String.format("/auth %s %s", loginField.getText().trim(), passwordField.getText().trim());
         passwordField.clear();
 
+        login = loginField.getText().trim();
+
         try {
             out.writeUTF(msg);
         } catch (IOException e) {
@@ -187,9 +194,9 @@ public class Controller implements Initializable {
     private void setTitle(String nickname) {
         String title;
         if (nickname.equals("")) {
-            title = "Chatty";
+            title = "HelloTalk!";
         } else {
-            title = String.format("Chatty [ %s ]", nickname);
+            title = String.format("HelloTalk! [ %s ]", nickname);
         }
         Platform.runLater(() -> {
             stage.setTitle(title);
