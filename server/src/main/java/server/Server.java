@@ -5,6 +5,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class Server {
@@ -14,6 +16,8 @@ public class Server {
 
     private List<ClientHandler> clients;
     private AuthService authService;
+
+    public static ExecutorService executorService = Executors.newCachedThreadPool();
 
     public Server() {
         clients = new CopyOnWriteArrayList<>();
