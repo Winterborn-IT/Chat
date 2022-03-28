@@ -27,7 +27,7 @@
     </HBox>
 
     <TextArea fx:id="textArea" editable="false" prefWidth="550.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0" />
-    <ListView fx:id="clientList" layoutX="349.0" layoutY="45.0" managed="false" onMouseReleased="#clientlistMouseAction" prefHeight="215.0" prefWidth="141.0" visible="false" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0" />
+    <ListView fx:id="clientList" layoutX="349.0" layoutY="45.0" managed="false" onMouseReleased="#clientListMouseAction" prefHeight="215.0" prefWidth="141.0" visible="false" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0" />
 
 
 </AnchorPane>
