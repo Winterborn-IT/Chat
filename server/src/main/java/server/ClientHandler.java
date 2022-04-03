@@ -27,7 +27,7 @@ public class ClientHandler {
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
 
-            new Thread(() -> {
+            Server.executorService.execute(()-> {
                 try {
                     socket.setSoTimeout(120000);
                     //цикл аутентификации
@@ -112,9 +112,11 @@ public class ClientHandler {
                     }
                 }
 
-            }).start();
+            });
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            Server.executorService.shutdown();
         }
     }
 
