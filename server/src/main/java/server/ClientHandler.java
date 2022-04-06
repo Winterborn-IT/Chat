@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
+import java.util.logging.Logger;
 
 public class ClientHandler {
     private Server server;
@@ -18,6 +19,8 @@ public class ClientHandler {
     private boolean authenticated;
     private String nickname;
     private String login;
+
+    private final static Logger logger = Logger.getLogger(ClientHandler.class.getName());
 
     public ClientHandler(Server server, Socket socket) {
         try {
@@ -54,7 +57,8 @@ public class ClientHandler {
                                         sendMsg("/auth_ok " + nickname);
                                         authenticated = true;
                                         server.subscribe(this);
-                                        socket.setSoTimeout(0); // Аутентификация прошла успешно
+                                        socket.setSoTimeout(0);
+                                        logger.info("Аутентификация прошла успешно: Пользователь " + nickname);
                                         break;
                                     } else {
                                         sendMsg("Учетная запись уже используется");
@@ -104,7 +108,7 @@ public class ClientHandler {
                     e.printStackTrace();
                 } finally {
                     server.unsubscribe(this);
-                    System.out.println("Client disconnected");
+                    logger.info("Клиент отключился " + nickname);
                     try {
                         socket.close();
                     } catch (IOException e) {
