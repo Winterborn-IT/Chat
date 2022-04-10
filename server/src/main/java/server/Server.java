@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Server {
@@ -19,6 +21,8 @@ public class Server {
 
     public static ExecutorService executorService = Executors.newCachedThreadPool();
 
+    private final static Logger logger = Logger.getLogger(Server.class.getName());
+
     public Server() {
         clients = new CopyOnWriteArrayList<>();
         if (!DataBaseAuthService.connect()) {
@@ -29,28 +33,31 @@ public class Server {
 
         try {
             server = new ServerSocket(PORT);
-            System.out.println("Server started");
+            logger.info("Сервер запущен");
 
             while (true) {
                 socket = server.accept();
-                System.out.println("Client connected");
+                logger.info("Клиент присоединился");
                 new ClientHandler(this, socket);
             }
 
 
         } catch (IOException e) {
             e.printStackTrace();
+            logger.log(Level.SEVERE, e.getMessage(), e);
         } finally {
             DataBaseAuthService.disconnect();
             try {
                 socket.close();
             } catch (IOException e) {
                 e.printStackTrace();
+                logger.log(Level.SEVERE, e.getMessage(), e);
             }
             try {
                 server.close();
             } catch (IOException e) {
                 e.printStackTrace();
+                logger.log(Level.SEVERE, e.getMessage(), e);
             }
         }
     }
